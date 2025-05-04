@@ -34,31 +34,6 @@ IDENTITY_PATH=${IDENTITY_PATH:-$DEFAULT_IDENTITY_PATH}
 SMALL_SWARM_CONTRACT="0x69C6e1D608ec64885E7b185d39b04B491a71768C"
 BIG_SWARM_CONTRACT="0x6947c6E196a48B77eFa9331EC1E3e45f3Ee5Fd58"
 
-# Automatically install Python 3.10 if not already installed
-if ! command -v python3.10 &>/dev/null; then
-    echo "[✓] Python 3.10 not found. Installing..."
-    sudo apt update
-    sudo apt install -y software-properties-common
-    sudo add-apt-repository -y ppa:deadsnakes/ppa
-    sudo apt update
-    sudo apt install -y python3.10 python3.10-venv python3.10-dev
-else
-    echo "[✓] Python 3.10 is already installed."
-fi
-
-# Create virtual environment if it doesn't exist
-if [ ! -d ".venv" ]; then
-    echo "[✓] Creating virtual environment with Python 3.10..."
-    python3.10 -m venv .venv
-fi
-
-# Activate the virtual environment
-source .venv/bin/activate
-
-# Confirm active Python version
-echo "[✓] Using Python version: $(python --version)"
-
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if command -v apt &>/dev/null; then
     echo -e "${CYAN}${BOLD}[✓] Debian/Ubuntu detected. Installing build-essential, gcc, g++...${NC}"
@@ -292,21 +267,6 @@ cleanup() {
 }
 
 trap cleanup INT
-
-echo -e "\033[38;5;45m\033[1m"  
-# echo -e "\033[38;5;224m"
-cat << "EOF"
-    ██████  ██            ███████ ██     ██  █████  ██████  ███    ███ 
-    ██   ██ ██            ██      ██     ██ ██   ██ ██   ██ ████  ████ 
-    ██████  ██      █████ ███████ ██  █  ██ ███████ ██████  ██ ████ ██ 
-    ██   ██ ██                 ██ ██ ███ ██ ██   ██ ██   ██ ██  ██  ██ 
-    ██   ██ ███████       ███████  ███ ███  ██   ██ ██   ██ ██      ██ 
-    
-          
-           JOIN THE COMMUNITY : https://t.me/Nexgenexplore
-                                                                
-EOF
-echo -e "\033[0m"  #dat lai mau sau
 
 sleep 2
 
