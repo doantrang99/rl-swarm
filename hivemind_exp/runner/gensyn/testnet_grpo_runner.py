@@ -32,15 +32,15 @@ class TestnetGRPORunner(GRPORunner):
 #    def get_initial_peers(self) -> list[str]:
 #       return self.coordinator.get_bootnodes()
     def get_initial_peers(self) -> list[str]:
-    # Skip chain lookup if no peers provided
+    # 1
         if not getattr(self, 'force_chain_lookup', True):
             return []
 
-    # Original chain lookup
+    # 2
         peers = self.coordinator.get_bootnodes()
         logger.info(f"Bootnodes from chain: {peers}")
 
-    # Filter out dead peers (optional)
+    # 3
         alive_peers = [p for p in peers if not p.startswith('/ip4/38.101.215.14')]
         return alive_peers if alive_peers else []
 
