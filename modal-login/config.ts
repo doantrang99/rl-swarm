@@ -5,8 +5,6 @@ import {
 } from "@account-kit/react";
 import { alchemy, sepolia } from "@account-kit/infra";
 import { QueryClient } from "@tanstack/react-query";
-
-
 const uiConfig: AlchemyAccountsUIConfig = {
   illustrationStyle: "outline",
   auth: {
